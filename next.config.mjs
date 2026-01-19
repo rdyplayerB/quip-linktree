@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    unoptimized: false,
-  },
-  output: 'standalone',
+  // Vercel configuration
 };
 
 export default nextConfig;
