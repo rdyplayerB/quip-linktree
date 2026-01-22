@@ -1,6 +1,6 @@
 import { SiteData } from '@/types';
 
-export const defaultSiteData: SiteData = {
+export const siteData: SiteData = {
   config: {
     tagline: "The World's Shared Quantum Computer",
     showFooter: true,
@@ -102,9 +102,9 @@ export const defaultSiteData: SiteData = {
         {
           id: 'blog',
           sectionId: 'resources',
-          title: 'Blog',
-          url: 'https://quantumdoomclock.com/blog',
-          description: 'Articles and updates',
+          title: 'Quantum Doomsday Clock',
+          url: 'https://quantumdoomclock.com/',
+          description: 'How long until Q-Day?',
           icon: 'blog',
           order: 2,
         },

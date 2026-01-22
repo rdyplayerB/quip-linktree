@@ -13,8 +13,17 @@ interface IconProps {
 export function Icon({ name, className = '', size = 20, style }: IconProps) {
   if (!name) return null;
 
+  // Common stroke props for Lucide-style icons
+  const stroke = {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 2,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+  };
+
   const iconMap: Record<string, React.ReactNode> = {
-    // Social - Modern filled style
+    // Brand icons (keep original brand-specific designs)
     twitter: (
       <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={className}>
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -44,210 +53,349 @@ export function Icon({ name, className = '', size = 20, style }: IconProps) {
     ),
     youtube: (
       <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={className}>
-        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
       </svg>
     ),
     medium: (
       <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={className}>
-        <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+        <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
       </svg>
     ),
-    // Resources - Modern filled icons
-    documentation: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={className}>
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM8 13h8v2H8v-2zm0 4h8v2H8v-2zm0-8h3v2H8V9z"/>
+
+    // Lucide Icons - Resources
+    book: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
       </svg>
     ),
-    whitepaper: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={className}>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+    bookOpen: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
       </svg>
     ),
-    blog: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={className}>
-        <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.414.586L3 14.586V18h3.414L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.586l8.045-8.045 1.586 1.586L7.587 16H6z"/>
-        <path d="M5 20h14v2H5z"/>
+    fileText: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" x2="8" y1="13" y2="13"/>
+        <line x1="16" x2="8" y1="17" y2="17"/>
+        <line x1="10" x2="8" y1="9" y2="9"/>
       </svg>
     ),
-    faq: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <circle cx="12" cy="12" r="10" />
-        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-        <line x1="12" y1="17" x2="12.01" y2="17" />
+    scroll: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3h4"/>
+        <path d="M19 17V5a2 2 0 0 0-2-2H4"/>
       </svg>
     ),
-    roadmap: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M3 12h4l3-9 4 18 3-9h4" />
+    clock: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
       </svg>
     ),
-    // Actions
-    launch: (
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M3.3335 8.00004H12.6668M12.6668 8.00004L8.00016 3.33337M12.6668 8.00004L8.00016 12.6667" />
+    helpCircle: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+        <path d="M12 17h.01"/>
       </svg>
     ),
-    wallet: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4" />
-        <path d="M4 6v12c0 1.1.9 2 2 2h14v-4" />
-        <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z" />
+    map: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+        <line x1="9" x2="9" y1="3" y2="18"/>
+        <line x1="15" x2="15" y1="6" y2="21"/>
+      </svg>
+    ),
+
+    // Lucide Icons - Actions
+    arrowRight: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M5 12h14"/>
+        <path d="m12 5 7 7-7 7"/>
+      </svg>
+    ),
+    externalLink: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" x2="21" y1="14" y2="3"/>
       </svg>
     ),
     download: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-        <polyline points="7 10 12 15 17 10" />
-        <line x1="12" y1="15" x2="12" y2="3" />
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" x2="12" y1="15" y2="3"/>
       </svg>
     ),
-    email: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-        <polyline points="22,6 12,13 2,6" />
+    mail: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <rect width="20" height="16" x="2" y="4" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
       </svg>
     ),
-    external: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-        <polyline points="15 3 21 3 21 9" />
-        <line x1="10" y1="14" x2="21" y2="3" />
+    wallet: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/>
+        <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>
+        <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
       </svg>
     ),
-    // Categories
+
+    // Lucide Icons - Categories
     users: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={className}>
-        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
     ),
     code: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={className}>
-        <path d="M8.293 6.293 2.586 12l5.707 5.707 1.414-1.414L5.414 12l4.293-4.293-1.414-1.414zm7.414 11.414L21.414 12l-5.707-5.707-1.414 1.414L18.586 12l-4.293 4.293 1.414 1.414z"/>
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <polyline points="16 18 22 12 16 6"/>
+        <polyline points="8 6 2 12 8 18"/>
       </svg>
     ),
-    news: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
-        <path d="M18 14h-8" />
-        <path d="M15 18h-5" />
-        <path d="M10 6h8v4h-8V6Z" />
+    newspaper: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+        <path d="M18 14h-8"/>
+        <path d="M15 18h-5"/>
+        <path d="M10 6h8v4h-8V6Z"/>
       </svg>
     ),
-    tools: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+    wrench: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
       </svg>
     ),
-    partners: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="m9 12 2 2 4-4" />
-      </svg>
-    ),
-    book: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={className}>
-        <path d="M21 4H3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-1 14H4V6h16v12z"/>
-        <path d="M9.5 8h5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5z"/>
+    shield: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
       </svg>
     ),
     link: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-      </svg>
-    ),
-    // Admin icons
-    edit: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-      </svg>
-    ),
-    trash: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <polyline points="3 6 5 6 21 6" />
-        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-        <line x1="10" y1="11" x2="10" y2="17" />
-        <line x1="14" y1="11" x2="14" y2="17" />
-      </svg>
-    ),
-    plus: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <line x1="12" y1="5" x2="12" y2="19" />
-        <line x1="5" y1="12" x2="19" y2="12" />
-      </svg>
-    ),
-    drag: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} className={className}>
-        <circle cx="9" cy="6" r="1.5" />
-        <circle cx="15" cy="6" r="1.5" />
-        <circle cx="9" cy="12" r="1.5" />
-        <circle cx="15" cy="12" r="1.5" />
-        <circle cx="9" cy="18" r="1.5" />
-        <circle cx="15" cy="18" r="1.5" />
-      </svg>
-    ),
-    chevronDown: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <polyline points="6 9 12 15 18 9" />
-      </svg>
-    ),
-    chevronRight: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <polyline points="9 18 15 12 9 6" />
-      </svg>
-    ),
-    arrowRight: (
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M3.3335 8.00004H12.6668M12.6668 8.00004L8.00016 3.33337M12.6668 8.00004L8.00016 12.6667" />
-      </svg>
-    ),
-    x: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </svg>
-    ),
-    eye: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-        <circle cx="12" cy="12" r="3" />
-      </svg>
-    ),
-    save: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-        <polyline points="17 21 17 13 7 13 7 21" />
-        <polyline points="7 3 7 8 15 8" />
-      </svg>
-    ),
-    settings: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <circle cx="12" cy="12" r="3" />
-        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
       </svg>
     ),
     layers: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <polygon points="12 2 2 7 12 12 22 7 12 2" />
-        <polyline points="2 17 12 22 22 17" />
-        <polyline points="2 12 12 17 22 12" />
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+        <polyline points="2 17 12 22 22 17"/>
+        <polyline points="2 12 12 17 22 12"/>
       </svg>
     ),
-    // Quantum/Node icons from quip.network
+
+    // Lucide Icons - UI
+    chevronDown: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="m6 9 6 6 6-6"/>
+      </svg>
+    ),
+    chevronRight: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="m9 18 6-6-6-6"/>
+      </svg>
+    ),
+    x: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M18 6 6 18"/>
+        <path d="m6 6 12 12"/>
+      </svg>
+    ),
+    plus: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M5 12h14"/>
+        <path d="M12 5v14"/>
+      </svg>
+    ),
+    settings: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    ),
+    eye: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    ),
+    gripVertical: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <circle cx="9" cy="12" r="1"/>
+        <circle cx="9" cy="5" r="1"/>
+        <circle cx="9" cy="19" r="1"/>
+        <circle cx="15" cy="12" r="1"/>
+        <circle cx="15" cy="5" r="1"/>
+        <circle cx="15" cy="19" r="1"/>
+      </svg>
+    ),
+    trash: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M3 6h18"/>
+        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+        <line x1="10" x2="10" y1="11" y2="17"/>
+        <line x1="14" x2="14" y1="11" y2="17"/>
+      </svg>
+    ),
+    edit: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+        <path d="m15 5 4 4"/>
+      </svg>
+    ),
+    save: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+        <polyline points="17 21 17 13 7 13 7 21"/>
+        <polyline points="7 3 7 8 15 8"/>
+      </svg>
+    ),
+
+    // Lucide Icons - Quantum/Tech themed
     cpu: (
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M7.84391 13.3333C9.2584 13.3333 10.615 12.7713 11.6151 11.7712C12.6153 10.771 13.1772 9.41441 13.1772 7.99992C13.1772 6.58543 12.6153 5.22888 11.6151 4.22868C10.615 3.22849 9.2584 2.66659 7.84391 2.66659M7.84391 13.3333C6.42942 13.3333 5.07287 12.7713 4.07268 11.7712C3.07248 10.771 2.51058 9.41441 2.51058 7.99992M7.84391 13.3333V14.6666M7.84391 2.66659C6.42942 2.66659 5.07287 3.22849 4.07268 4.22868C3.07248 5.22888 2.51058 6.58543 2.51058 7.99992M7.84391 2.66659V1.33325M2.51058 7.99992H1.17725M9.17725 7.99992C9.17725 8.35354 9.03677 8.69268 8.78672 8.94273C8.53667 9.19278 8.19753 9.33325 7.84391 9.33325C7.49029 9.33325 7.15115 9.19278 6.9011 8.94273C6.65106 8.69268 6.51058 8.35354 6.51058 7.99992C6.51058 7.6463 6.65106 7.30716 6.9011 7.05711C7.15115 6.80706 7.49029 6.66658 7.84391 6.66658C8.19753 6.66658 8.53667 6.80706 8.78672 7.05711C9.03677 7.30716 9.17725 7.6463 9.17725 7.99992ZM9.17725 7.99992H14.5106M11.1772 13.7733L10.5106 12.6199M7.17725 6.84659L4.51058 2.22659M13.6172 11.3333L12.4639 10.6666M2.07058 4.66659L3.22391 5.33325M13.6172 4.66659L12.4639 5.33325M2.07058 11.3333L3.22391 10.6666M11.1772 2.22659L10.5106 3.37992M7.17725 9.15325L4.51058 13.7733" />
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <rect width="16" height="16" x="4" y="4" rx="2"/>
+        <rect width="6" height="6" x="9" y="9" rx="1"/>
+        <path d="M15 2v2"/>
+        <path d="M15 20v2"/>
+        <path d="M2 15h2"/>
+        <path d="M2 9h2"/>
+        <path d="M20 15h2"/>
+        <path d="M20 9h2"/>
+        <path d="M9 2v2"/>
+        <path d="M9 20v2"/>
+      </svg>
+    ),
+    activity: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    ),
+    sparkles: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+        <path d="M5 3v4"/>
+        <path d="M19 17v4"/>
+        <path d="M3 5h4"/>
+        <path d="M17 19h4"/>
+      </svg>
+    ),
+    zap: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    ),
+    globe: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+        <path d="M2 12h20"/>
+      </svg>
+    ),
+
+    // Aliases for backward compatibility
+    documentation: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+      </svg>
+    ),
+    whitepaper: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" x2="8" y1="13" y2="13"/>
+        <line x1="16" x2="8" y1="17" y2="17"/>
+        <line x1="10" x2="8" y1="9" y2="9"/>
+      </svg>
+    ),
+    blog: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+      </svg>
+    ),
+    faq: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+        <path d="M12 17h.01"/>
+      </svg>
+    ),
+    roadmap: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+        <line x1="9" x2="9" y1="3" y2="18"/>
+        <line x1="15" x2="15" y1="6" y2="21"/>
+      </svg>
+    ),
+    launch: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M5 12h14"/>
+        <path d="m12 5 7 7-7 7"/>
+      </svg>
+    ),
+    external: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" x2="21" y1="14" y2="3"/>
+      </svg>
+    ),
+    email: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <rect width="20" height="16" x="2" y="4" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+    ),
+    news: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+        <path d="M18 14h-8"/>
+        <path d="M15 18h-5"/>
+        <path d="M10 6h8v4h-8V6Z"/>
+      </svg>
+    ),
+    tools: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+      </svg>
+    ),
+    partners: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+      </svg>
+    ),
+    drag: (
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <circle cx="9" cy="12" r="1"/>
+        <circle cx="9" cy="5" r="1"/>
+        <circle cx="9" cy="19" r="1"/>
+        <circle cx="15" cy="12" r="1"/>
+        <circle cx="15" cy="5" r="1"/>
+        <circle cx="15" cy="19" r="1"/>
       </svg>
     ),
     pulse: (
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M14.5106 7.99992H12.8572C12.5659 7.9993 12.2824 8.09412 12.05 8.2699C11.8176 8.44567 11.6492 8.69272 11.5706 8.97325L10.0039 14.5466C9.99381 14.5812 9.97276 14.6116 9.94391 14.6333C9.91506 14.6549 9.87997 14.6666 9.84391 14.6666C9.80785 14.6666 9.77276 14.6549 9.74391 14.6333C9.71506 14.6116 9.69401 14.5812 9.68391 14.5466L6.00391 1.45325C5.99382 1.41863 5.97276 1.38822 5.94391 1.36659C5.91506 1.34495 5.87997 1.33325 5.84391 1.33325C5.80785 1.33325 5.77276 1.34495 5.74391 1.36659C5.71506 1.38822 5.69401 1.41863 5.68391 1.45325L4.11725 7.02658C4.03889 7.30602 3.8715 7.55226 3.64049 7.72793C3.40948 7.90359 3.12746 7.99909 2.83725 7.99992H1.17725" />
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
       </svg>
     ),
     sparkle: (
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
-        <path d="M13.3335 2.00008V4.66675M14.6668 3.33342H12.0001M2.66679 11.3334V12.6668M3.33346 12.0001H2.00012M6.62479 10.3334C6.56527 10.1027 6.44502 9.89215 6.27653 9.72367C6.10805 9.55519 5.8975 9.43494 5.66679 9.37542L1.57679 8.32075C1.50701 8.30095 1.4456 8.25892 1.40186 8.20105C1.35813 8.14318 1.33447 8.07262 1.33447 8.00008C1.33447 7.92755 1.35813 7.85699 1.40186 7.79912C1.4456 7.74125 1.50701 7.69922 1.57679 7.67942L5.66679 6.62408C5.89742 6.56462 6.10792 6.44447 6.27639 6.27611C6.44486 6.10775 6.56517 5.89734 6.62479 5.66675L7.67946 1.57675C7.69906 1.5067 7.74105 1.44498 7.799 1.40101C7.85696 1.35705 7.92771 1.33325 8.00046 1.33325C8.0732 1.33325 8.14395 1.35705 8.20191 1.40101C8.25987 1.44498 8.30185 1.5067 8.32146 1.57675L9.37546 5.66675C9.43497 5.89747 9.55523 6.10802 9.72371 6.2765C9.89219 6.44498 10.1027 6.56523 10.3335 6.62475L14.4235 7.67875C14.4938 7.69815 14.5558 7.74009 14.6 7.79814C14.6442 7.85618 14.6682 7.92713 14.6682 8.00008C14.6682 8.07304 14.6442 8.14399 14.6 8.20203C14.5558 8.26008 14.4938 8.30202 14.4235 8.32142L10.3335 9.37542C10.1027 9.43494 9.89219 9.55519 9.72371 9.72367C9.55523 9.89215 9.43497 10.1027 9.37546 10.3334L8.32079 14.4234C8.30118 14.4935 8.2592 14.5552 8.20124 14.5992C8.14328 14.6431 8.07254 14.6669 7.99979 14.6669C7.92704 14.6669 7.85629 14.6431 7.79834 14.5992C7.74038 14.5552 7.69839 14.4935 7.67879 14.4234L6.62479 10.3334Z" />
+      <svg viewBox="0 0 24 24" width={size} height={size} className={className} {...stroke}>
+        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+        <path d="M5 3v4"/>
+        <path d="M19 17v4"/>
+        <path d="M3 5h4"/>
+        <path d="M17 19h4"/>
       </svg>
     ),
   };
@@ -262,6 +410,7 @@ export function Icon({ name, className = '', size = 20, style }: IconProps) {
 }
 
 export const iconOptions: { value: string; label: string }[] = [
+  // Social
   { value: 'twitter', label: 'Twitter/X' },
   { value: 'discord', label: 'Discord' },
   { value: 'telegram', label: 'Telegram' },
@@ -269,24 +418,32 @@ export const iconOptions: { value: string; label: string }[] = [
   { value: 'github', label: 'GitHub' },
   { value: 'youtube', label: 'YouTube' },
   { value: 'medium', label: 'Medium' },
-  { value: 'documentation', label: 'Documentation' },
-  { value: 'whitepaper', label: 'Whitepaper' },
-  { value: 'blog', label: 'Blog' },
-  { value: 'faq', label: 'FAQ' },
-  { value: 'roadmap', label: 'Roadmap' },
-  { value: 'launch', label: 'Launch/Arrow' },
-  { value: 'wallet', label: 'Wallet' },
-  { value: 'download', label: 'Download' },
-  { value: 'email', label: 'Email' },
-  { value: 'external', label: 'External Link' },
-  { value: 'users', label: 'Community' },
-  { value: 'code', label: 'Developers' },
-  { value: 'news', label: 'News' },
-  { value: 'tools', label: 'Tools' },
-  { value: 'partners', label: 'Partners' },
+  // Resources
   { value: 'book', label: 'Book' },
+  { value: 'bookOpen', label: 'Book Open' },
+  { value: 'fileText', label: 'Document' },
+  { value: 'scroll', label: 'Scroll/Whitepaper' },
+  { value: 'clock', label: 'Clock' },
+  { value: 'helpCircle', label: 'Help/FAQ' },
+  { value: 'map', label: 'Map/Roadmap' },
+  { value: 'newspaper', label: 'News' },
+  // Actions
+  { value: 'arrowRight', label: 'Arrow Right' },
+  { value: 'externalLink', label: 'External Link' },
+  { value: 'download', label: 'Download' },
+  { value: 'mail', label: 'Email' },
+  { value: 'wallet', label: 'Wallet' },
+  // Categories
+  { value: 'users', label: 'Users/Community' },
+  { value: 'code', label: 'Code/Developers' },
+  { value: 'wrench', label: 'Tools' },
+  { value: 'shield', label: 'Shield/Security' },
   { value: 'link', label: 'Link' },
-  { value: 'cpu', label: 'CPU/Node' },
-  { value: 'pulse', label: 'Pulse/Activity' },
-  { value: 'sparkle', label: 'Sparkle/AI' },
+  { value: 'layers', label: 'Layers' },
+  { value: 'globe', label: 'Globe' },
+  // Tech/Quantum
+  { value: 'cpu', label: 'CPU/Processor' },
+  { value: 'activity', label: 'Activity/Pulse' },
+  { value: 'sparkles', label: 'Sparkles' },
+  { value: 'zap', label: 'Zap/Lightning' },
 ];
