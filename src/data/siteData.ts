@@ -48,7 +48,7 @@ export const siteData: SiteData = {
           id: 'discord',
           sectionId: 'community',
           title: 'Join our Discord',
-          url: 'https://discord.gg/BuFPTaMSht',
+          url: 'https://discord.gg/quipnetwork',
           description: 'Connect with the community',
           icon: 'discord',
           order: 2,
