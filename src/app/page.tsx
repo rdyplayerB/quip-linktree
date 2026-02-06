@@ -9,7 +9,7 @@ export default function HomePage() {
   const sortedSections = [...siteData.sections].sort((a, b) => a.order - b.order);
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <GradientWave />
       <div className="max-w-link-page mx-auto px-5 sm:px-4 relative z-10">
         <Header config={siteData.config} />

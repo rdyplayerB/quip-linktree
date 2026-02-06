@@ -2,7 +2,7 @@ import { SiteData } from '@/types';
 
 export const siteData: SiteData = {
   config: {
-    tagline: "The World's Shared Quantum Computer",
+    tagline: "The worldwide quantum computer",
     showFooter: true,
     logoUrl: '/logo.svg',
     mainWebsiteUrl: 'https://quip.network',
